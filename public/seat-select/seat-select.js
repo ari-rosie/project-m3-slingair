@@ -1,11 +1,14 @@
-const flightInput = document.getElementById('flight');
 const seatsDiv = document.getElementById('seats-section');
 const confirmButton = document.getElementById('confirm-button');
-const test = 'test';
+const dropMenu = document.querySelector('.droplist_flights');
+
+let flightInput;
 let selection = '';
 
-const renderSeats = (seatObj) => {
-    console.log(seatObj);
+// when a valid flight number is entered, this show the seating map and its availability
+const renderSeats = (seatObj, flight) => {
+    flightInput = flight;
+
     document.querySelector('.form-container').style.display = 'block';
     let index = 0;
     const alpha = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -46,45 +49,51 @@ const renderSeats = (seatObj) => {
     });
 }
 
-
-const toggleFormContent = (event) => {
-    const flightNumber = flightInput.value.toUpperCase();
+// Validates the flight number entered and asks the server for its corresponding seating data
+const toggleFormContent = (flight) => {
+    dropMenu.style.display = 'none';
+    const flightNumber = flight.toUpperCase();
     const flag = flightNumber.startsWith('SA');
     if (flag) {
         fetch(`/flights/${flightNumber}`)
         .then(res => res.json())
         .then(data => {
             if (data.status === 200)
-                renderSeats(data.data);
-            console.log(data.data);
+                renderSeats(data.data, data.flight);
         })
         
     } else 
-        console.log("Flight number starts with 'SA'.")
+        console.log("Flight number must start with 'SA'.");
 
-}
+};
 
+// when users sends a reservation request this sends the data to the server
 const handleConfirmSeat = async (event) => {
     event.preventDefault();
-    const data = await fetch('/reservation', {
-        method: 'POST',
-        body: JSON.stringify({
-            'givenName': document.getElementById('givenName').value,
-            'surname': document.getElementById('surname').value,
-            'email': document.getElementById('email').value,
-            'flight': document.getElementById('flight').value.toUpperCase(),
-            'seat': document.querySelector('input[name=seat]:checked').value
-        }),
-        headers: {
-            'Accept': 'application/json',
-            "Content-Type": "application/json"
-        }
-    });
-    if (data.status === 400)
+    try {
+        let data = await fetch('https://journeyedu.herokuapp.com/slingair/users', {
+            method: 'POST',
+            body: JSON.stringify({
+                'givenName': document.getElementById('givenName').value,
+                'surname': document.getElementById('surname').value,
+                'email': document.getElementById('email').value,
+                'flight': flightInput,
+                // 'id': 'testId',
+                'seat': document.querySelector('input[name=seat]:checked').value
+            }),
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json"
+            }
+        });
+        data = await data.json();
+        if (data.status === 201) {
+            const {id} = await data.reservation;
+            window.location.href = (`/confirmation/${id}`);
+        } 
+    } catch (err) {
+        console.log(err);
+    }
+};
 
-    console.log(document.getElementById('givenName').value);
 
-
-}
-
-flightInput.addEventListener('blur', toggleFormContent);

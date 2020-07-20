@@ -4,7 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const func = require('./data/handlers');
-const path = require('path');
 
 express()
   .use(function (req, res, next) {
@@ -25,8 +24,9 @@ express()
   // endpoints
   .get('/seat-select', func.handleFlightInput)
   .get('/flights/:number', func.handleFlightNum)
-  .get('/confirmation', func.handleConfirmation)
-  .post('/reservation', func.handleReservation)
+  .get('/confirmation/:id', func.handleConfirmation)
+  .get('/admin', func.handleAdmin)
+  // .post('/reservation', func.handleReservation) endpoint replaced with a fetch to live server from FE (seat-select.js)
 
   .use((req, res) => res.send('Not Found'))
   .listen(8000, () => console.log(`Listening on port 8000`));

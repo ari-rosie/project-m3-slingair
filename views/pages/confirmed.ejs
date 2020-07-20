@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<div class="content confirmation">
+    <div class="user">
+        <p class="message">Your flight is confirmed!</p>
+        <ul class="user-info">
+            <li>Flight #:<span id="flight"><%=data.flight %></span> seat #: <span id="seat"><%=data.seat%></span></li>
+            <li>Name:<span id="name"><%=`${data.givenName} ${data.surname}`%></span></li>
+            <li>Email:<span id="email"><%=data.email%></span></li>
+        </ul>
+    </div>
+    <div class="tombstone"></div>
+</div>
+<%- include('../partials/footer') %>

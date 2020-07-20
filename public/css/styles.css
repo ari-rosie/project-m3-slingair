@@ -77,10 +77,49 @@ p, a, li, blockquote, input {
     background: var(--cadmium-red);
     height: 80px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: var(--page-padding);
     margin-bottom: var(--page-padding);
+    width: 100%;
 }
+
+.flight-select .droplist {
+    width: 300px;
+    height: auto;
+
+}
+
+.flight-select label {
+    cursor: pointer;
+    margin-left: 25px;
+
+}
+
+.flight-select ol {
+    width: 300px;
+    padding-top: 24px;
+    text-align: center;
+    background-color: #D80026;
+    display: none;
+    
+}
+
+.flight-select li {
+    color: #E3C4A6;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.flight-select li:hover {
+    color: var(--cadmium-red);
+    background-color: var(--orange);
+}
+
+.flight-select .droplist:hover .droplist_flights{
+    display: block;
+}
+
 .flight-select input {
     width: 125px;
     margin-left: var(--page-padding);
@@ -260,3 +299,7 @@ input {
 }
 
 .form-container { display: none; }
+
+.admin_list ol{
+    padding-top: 20px;
+}

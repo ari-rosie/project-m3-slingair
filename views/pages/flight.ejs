@@ -1,11 +1,17 @@
 <%- include('../partials/header') %>
 <div class="flight-select">
-    <label for="flight">Flight Number :</label>
-    <input name="flight" id="flight" class="flight" type="text" placeholder="flight #" />
+    <div class="droplist">
+        <label for="flight">Flight Number :</label>
+        <!-- <input name="flight" id="flight" class="flight" type="text" placeholder="flight #" /> -->
+        <ol class="droplist_flights">
+            <% for (const d in data) { %> 
+            <li onclick="toggleFormContent('<%=data[d]%>')" ><%=data[d]%></li>
+            <% } %> 
+        </ol>
+    </div>
 </div>
 <div class="form-container">
-    <!-- <h2>Select your seat and Provide your information!</h2> -->
-    <h2><%=title%></h2>
+    <h2>Select your seat and Provide your information!</h2>
     <form id="seats" class="content" name="salesForm" onsubmit="handleConfirmSeat(event)">
         <div class='form-content plane'>
             <div id="seats-section"></div>

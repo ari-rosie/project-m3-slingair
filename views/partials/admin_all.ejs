@@ -1,0 +1,10 @@
+<ol class="admin_list">
+    <% for (const d in data) { %>
+    <ol >
+        <li>ID: <%=data[d].id%></li>
+        <li>NAME: <%=`${data[d].givenName} ${data[d].surname}`%></li>
+        <li>EMAIL: <%=data[d].email%></li>
+        <li>FLIGHT #: <%=data[d].flight%> SEAT #: <%=data[d].seat%></li>
+    </ol> 
+    <% } %> 
+</ol>
