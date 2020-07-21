@@ -1,7 +1,11 @@
 <%- include('../partials/header') %>
 
 <div id="admin-content" class="content">
+    <% if (section === 'all') { %> 
     <%- include('../partials/admin_all') %>
+    <% } else if (section === 'search') { %>
+    <%- include('../partials/admin_user') %>
+    <% } %> 
 </div>
 
 <%- include('../partials/footer') %>

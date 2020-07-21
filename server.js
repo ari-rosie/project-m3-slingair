@@ -25,7 +25,7 @@ express()
   .get('/seat-select', func.handleFlightInput)
   .get('/flights/:number', func.handleFlightNum)
   .get('/confirmation/:id', func.handleConfirmation)
-  .get('/admin', func.handleAdmin)
+  .get('/admin/:section', func.handleAdmin)
   // .post('/reservation', func.handleReservation) endpoint replaced with a fetch to live server from FE (seat-select.js)
 
   .use((req, res) => res.send('Not Found'))

@@ -16,10 +16,11 @@ const { user, reservations } = require('../test-data/reservations');
 //     }
 // };
 
+// access admin page
 const handleAdmin = async (req, res) => {
     const data = await reservations();
-    console.log(data);
-    res.status(200).render('pages/view-reservation', {title: 'Admin', data: data});
+    const section = req.params.section;
+    res.status(200).render('pages/view-reservation', {title: 'Admin', data: data, section: section});
 };
 
 //when user picks a flight, this will check if the flight exists and send back its seating map to the FE
