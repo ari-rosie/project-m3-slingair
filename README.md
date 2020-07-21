@@ -1,74 +1,14 @@
-# Module 3 - Node - Mini project
+# Module 3 - Node project
 
-<img src='public/images/screenshots/header.png' style='width:100%' />
+Seat-booking app for SlingAir airlines.
 
-You just accepted a web developer position at Slingshot Airlines!
+<img src="./public/images/bookseat.gif">
 
-They were really impressed with the work you did at Concordia Bootcamps. After a conversation with the CEO at the job fair, they hired you on the spot! They have project that they need to ship asap and are confident that you can deliver.
+With /seat-select we access the flight selection page and then connect to an API to access the available flights and their specific informations.
+Once the reservation sent, the local server will validate the new reservation with the API and return a confirmation page.
 
-They have a new seat-booking app that is set to be released next week. You were told that _most_ of the work is already done. And that all that remains is just to connect the different pieces to get it working. Because you worked on similar functionality during your bootcamp, you're confident that you can pull it off.
+<img src="./public/images/admin.gif">
 
-You have been provided with a GitHub repo and little else.
-
-You ask if it is possible to speak to the dev that worked on the project thus far. Nope. Not possible. He left without notice and on bad terms.
-
-Looks like you're on your own...
-
----
-
-## The App
-
-### Screenshots
-
-<img src='public/images/screenshots/seat-select.png' style='float:left;width:48%;margin-right:4%;' />
-<img src='public/images/screenshots/confirmed.png' style='float:left;width:48%' />
-
-### Functionality
-
-- When a user navigates to `/seat-select`, they are presented with an input to enter the flight number.
-- With the flight number, make a request to the server for the seating availability on that flight.
-- When a response with seating is received, display the seating input as well as the form requesting user's information.
-- User selects a seat, enters information and clicks 'Confirm'.
-- Contact the server with the data, and wait for a success response to redirect to the `/confirmed.html` page.
-- The confirmed page should display a confirmation message to the user with the info that they entered on the previous screen.
-
-## Project Setup
-
-```
-yarn install
-```
-
-This will start the server and make the static pages accessible via their endpoint.
-
-## Developer Notes
-
-There is a folder called `notes` that contains possible hints on what to do next...
-
----
-
-## Requirements for Poject Completion
-
-In order for your project to be considered `DONE` (passing grade), you should have a working MVP of the app.
-
-### Minimum Viable Product Details
-
-1. user can select a flight from a dropdown (or buttons, or radio ). _Current implementation of an input field is not ideal._
-2. user can select an available seat.
-3. user can enter their personal information.
-4. user can view the flight confirmation page.
-5. given a `userId` (or other user info --up to you), user should be able to view his reservation.
-
-_Note that mutated test data will be preserved as long as your server is running. It stays in memory. The changes will only be reset when the server is restarted._
-
-### Optional
-
-1. Connect to the remote db/server to get "live" data.
-
-- NOTE TO INSTRUCTOR: There may or may not be a live server. Remove this goal, if not. (Server is hosted on a free heroku plan at the moment, so first call of the day will fail.)
-
-2. given a `userId` (or other user info --up to you), user should be able to view their reservation.
-3. Create an admin page that displays the seat status for a flight.
-   - you could reuse the flight selection method you implemented above.
-   - this page should display a table of all seats, and their status.
-4. The admin page also displays the name of the user in the seat.
-5. Each seat also has a link to view the reservation details.
+With /admin we access information from previous reservations. 
+/admin/all returns a list of all reservations
+/admin/search returns a page that allows the user to enter an ID number or email and will then send back the corresponding confirmation page.
